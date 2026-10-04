@@ -1,0 +1,16 @@
+0000000000000000000000000000000000000000 daef005f007ae558c5d7c5d10defbebffd6532c3 tutukapolar <ytty8229@gmail.com> 1789950614 -0300	commit (initial): primeiro commit
+daef005f007ae558c5d7c5d10defbebffd6532c3 d0a9e9eb2d2c20668e8ccee837f0b6e0d6f3d45a tutukapolar <ytty8229@gmail.com> 1789952519 -0300	commit: corrige transbordo lateral no mobile
+d0a9e9eb2d2c20668e8ccee837f0b6e0d6f3d45a 8c3e1bad89c485c271e6d41693be4c942eaa4822 tutukapolar <ytty8229@gmail.com> 1789952594 -0300	commit: corrige transbordo lateral no mobile
+8c3e1bad89c485c271e6d41693be4c942eaa4822 7f2821db774f27bea65b020cb75fb4e321bb6a0b tutukapolar <ytty8229@gmail.com> 1790359728 -0300	commit: Polishes the inventory screen with labeled fields, empty states, and safer delete.
+7f2821db774f27bea65b020cb75fb4e321bb6a0b 6ad2256ddbb52aac65bed5d0b3f0c3f156647239 tutukapolar <ytty8229@gmail.com> 1790445601 -0300	commit: Limpeza: remove .env e aplica .gitignore
+6ad2256ddbb52aac65bed5d0b3f0c3f156647239 31066b58d823bac30a90aee8427d7493f559d15b tutukapolar <ytty8229@gmail.com> 1790467747 -0300	commit: feat: add responsive design improvements, PIX payment generation, and feedback system
+31066b58d823bac30a90aee8427d7493f559d15b ef34ad098d601935cf49301e7f507d302e083387 tutukapolar <ytty8229@gmail.com> 1790468385 -0300	commit (amend): fix: mark bot-whatsapp subproject as dirty
+ef34ad098d601935cf49301e7f507d302e083387 bbdaa2bba562d15c0a9d31a8ccdda8141b2cb686 tutukapolar <ytty8229@gmail.com> 1790468506 -0300	commit: fix: remove bot-whatsapp subproject
+bbdaa2bba562d15c0a9d31a8ccdda8141b2cb686 7ae6c5c20ba823fe11333a32094340dc78952ecc tutukapolar <ytty8229@gmail.com> 1790468517 -0300	pull --tags origin main: Merge made by the 'ort' strategy.
+7ae6c5c20ba823fe11333a32094340dc78952ecc e85bd2662c9aec833eb4599370c87e1f28d7d0d1 tutukapolar <ytty8229@gmail.com> 1790468924 -0300	commit: Aplica regras de responsividade para mobile
+e85bd2662c9aec833eb4599370c87e1f28d7d0d1 3228e4251cfeea27e93a8330ec446a84d0947db2 tutukapolar <ytty8229@gmail.com> 1790469807 -0300	commit: fix: change package.json private field to false
+3228e4251cfeea27e93a8330ec446a84d0947db2 0000000000000000000000000000000000000000 tutukapolar <ytty8229@gmail.com> 1791126445 -0300	Branch: renamed refs/heads/main to refs/heads/main
+3228e4251cfeea27e93a8330ec446a84d0947db2 3228e4251cfeea27e93a8330ec446a84d0947db2 tutukapolar <ytty8229@gmail.com> 1791126445 -0300	Branch: renamed refs/heads/main to refs/heads/main
+3228e4251cfeea27e93a8330ec446a84d0947db2 e16e72bccee901de295e2ead34baa9e16da00057 tutukapolar <ytty8229@gmail.com> 1791126522 -0300	commit: chore: remove bot whatsapp e proteger arquivos locais
+e16e72bccee901de295e2ead34baa9e16da00057 0000000000000000000000000000000000000000 tutukapolar <ytty8229@gmail.com> 1791127284 -0300	Branch: renamed refs/heads/main to refs/heads/main
+e16e72bccee901de295e2ead34baa9e16da00057 e16e72bccee901de295e2ead34baa9e16da00057 tutukapolar <ytty8229@gmail.com> 1791127284 -0300	Branch: renamed refs/heads/main to refs/heads/main

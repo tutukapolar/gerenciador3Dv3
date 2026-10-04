@@ -1,0 +1,117 @@
+/* Tema global do 3D Print Manager.
+   As telas usam classes Tailwind escuras historicamente; estes overrides
+   deixam o modo claro realmente legível sem precisar reescrever cada tela. */
+
+.app-theme {
+  --app-accent: #4f46e5;
+  --app-accent-300: color-mix(in srgb, var(--app-accent) 55%, white);
+  --app-accent-400: color-mix(in srgb, var(--app-accent) 75%, white);
+  --app-accent-500: var(--app-accent);
+  --app-accent-600: color-mix(in srgb, var(--app-accent) 88%, black);
+  --app-accent-700: color-mix(in srgb, var(--app-accent) 72%, black);
+  --app-accent-900: color-mix(in srgb, var(--app-accent) 42%, black);
+  --app-accent-950: color-mix(in srgb, var(--app-accent) 24%, black);
+}
+
+.app-theme .bg-indigo-300 { background-color: var(--app-accent-300) !important; }
+.app-theme .bg-indigo-400 { background-color: var(--app-accent-400) !important; }
+.app-theme .bg-indigo-500 { background-color: var(--app-accent-500) !important; }
+.app-theme .bg-indigo-600 { background-color: var(--app-accent-600) !important; }
+.app-theme .bg-indigo-900 { background-color: var(--app-accent-900) !important; }
+.app-theme .bg-indigo-950 { background-color: var(--app-accent-950) !important; }
+.app-theme .text-indigo-200 { color: var(--app-accent-300) !important; }
+.app-theme .text-indigo-300 { color: var(--app-accent-300) !important; }
+.app-theme .text-indigo-400 { color: var(--app-accent-400) !important; }
+.app-theme .text-indigo-500 { color: var(--app-accent-500) !important; }
+.app-theme .text-indigo-600 { color: var(--app-accent-600) !important; }
+.app-theme .border-indigo-500 { border-color: var(--app-accent-500) !important; }
+.app-theme .border-indigo-600 { border-color: var(--app-accent-600) !important; }
+.app-theme .hover\:bg-indigo-400:hover { background-color: var(--app-accent-400) !important; }
+.app-theme .hover\:bg-indigo-500:hover { background-color: var(--app-accent-500) !important; }
+.app-theme .hover\:bg-indigo-600:hover { background-color: var(--app-accent-600) !important; }
+.app-theme .hover\:border-indigo-500\/50:hover { border-color: color-mix(in srgb, var(--app-accent-500) 50%, transparent) !important; }
+.app-theme .focus\:border-indigo-500:focus { border-color: var(--app-accent-500) !important; }
+.app-theme input[type='color'] { accent-color: var(--app-accent); }
+
+/* ---------- MODO CLARO ---------- */
+.app-theme.theme-light {
+  color-scheme: light;
+  background: #f5f7fb !important;
+  color: #172033 !important;
+}
+
+.app-theme.theme-light .bg-slate-950 { background-color: #eef2f7 !important; }
+.app-theme.theme-light .bg-slate-900 { background-color: #ffffff !important; }
+.app-theme.theme-light .bg-slate-800 { background-color: #ffffff !important; }
+.app-theme.theme-light .bg-slate-700 { background-color: #e8edf5 !important; }
+.app-theme.theme-light .bg-slate-600 { background-color: #dce3ee !important; }
+.app-theme.theme-light .bg-slate-500 { background-color: #cbd5e1 !important; }
+
+.app-theme.theme-light .bg-slate-900\/60 { background-color: rgba(241,245,249,.86) !important; }
+.app-theme.theme-light .bg-slate-800\/50 { background-color: rgba(248,250,252,.92) !important; }
+.app-theme.theme-light .bg-slate-950\/60 { background-color: rgba(238,242,247,.96) !important; }
+
+.app-theme.theme-light .text-white { color: #172033 !important; }
+.app-theme.theme-light .text-slate-100 { color: #172033 !important; }
+.app-theme.theme-light .text-slate-200 { color: #273449 !important; }
+.app-theme.theme-light .text-slate-300 { color: #40506a !important; }
+.app-theme.theme-light .text-slate-400 { color: #52627a !important; }
+.app-theme.theme-light .text-slate-500 { color: #64748b !important; }
+.app-theme.theme-light .text-slate-600 { color: #475569 !important; }
+
+.app-theme.theme-light .border-slate-800 { border-color: #dbe2ec !important; }
+.app-theme.theme-light .border-slate-700 { border-color: #d2dbe7 !important; }
+.app-theme.theme-light .border-slate-600 { border-color: #c5cfdd !important; }
+
+.app-theme.theme-light input,
+.app-theme.theme-light select,
+.app-theme.theme-light textarea {
+  background-color: #ffffff !important;
+  color: #172033 !important;
+  border-color: #cbd5e1 !important;
+}
+.app-theme.theme-light input::placeholder,
+.app-theme.theme-light textarea::placeholder { color: #7a8799 !important; }
+.app-theme.theme-light option { background: #ffffff; color: #172033; }
+
+.app-theme.theme-light button.bg-slate-800,
+.app-theme.theme-light button.bg-slate-700 {
+  color: #334155 !important;
+}
+.app-theme.theme-light button.bg-slate-800:hover,
+.app-theme.theme-light button.bg-slate-700:hover {
+  background-color: #dce4ef !important;
+  color: #172033 !important;
+}
+
+.app-theme.theme-light .ai-panel {
+  background-color: #ffffff !important;
+  border-color: #d2dbe7 !important;
+  box-shadow: 0 20px 60px rgba(15,23,42,.18) !important;
+}
+.app-theme.theme-light .ai-panel .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  border-color: #dbe2ec !important;
+}
+.app-theme.theme-light .ai-panel .bg-slate-950\/60 {
+  background-color: #f8fafc !important;
+}
+.app-theme.theme-light .ai-panel input {
+  background-color: #ffffff !important;
+}
+.app-theme.theme-light .ai-fab {
+  box-shadow: 0 16px 35px rgba(15,23,42,.22) !important;
+}
+
+/* Melhor contraste para links/ícones secundários no claro */
+.app-theme.theme-light .text-cyan-300 { color: #087f91 !important; }
+.app-theme.theme-light .text-cyan-400 { color: #087f91 !important; }
+.app-theme.theme-light .text-emerald-400 { color: #087f5b !important; }
+.app-theme.theme-light .text-amber-400 { color: #a16207 !important; }
+.app-theme.theme-light .text-rose-400 { color: #be123c !important; }
+.app-theme.theme-light .text-indigo-400 { color: var(--app-accent-600) !important; }
+.app-theme.theme-light .text-indigo-300 { color: var(--app-accent-700) !important; }
+
+/* Evita cabeçalhos gigantes/escuros herdados das telas antigas */
+.app-theme.theme-light .shadow-2xl,
+.app-theme.theme-light .shadow-xl { --tw-shadow-color: rgba(15,23,42,.10); }
