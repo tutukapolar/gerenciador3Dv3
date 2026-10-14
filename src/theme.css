@@ -115,3 +115,216 @@
 /* Evita cabeçalhos gigantes/escuros herdados das telas antigas */
 .app-theme.theme-light .shadow-2xl,
 .app-theme.theme-light .shadow-xl { --tw-shadow-color: rgba(15,23,42,.10); }
+
+
+/* ---------- RESPONSIVIDADE MOBILE / PREVENÇÃO DE FAIXAS BRANCAS ---------- */
+:root {
+  color-scheme: dark;
+  background: #0f172a;
+}
+html, body, #root {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+body {
+  background-color: #0f172a;
+}
+img, video, canvas, iframe, svg {
+  max-width: 100%;
+}
+input, select, textarea, button {
+  max-width: 100%;
+}
+.app-theme {
+  width: 100%;
+  min-width: 0;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+.app-theme main {
+  min-width: 0;
+}
+.app-theme main > * {
+  min-width: 0;
+  max-width: 100%;
+}
+.app-theme table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.app-theme pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.app-theme header {
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.app-theme header > div {
+  min-width: 0;
+}
+.app-theme header nav {
+  min-width: 0;
+  max-width: 100%;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.app-theme header nav button {
+  flex: 0 0 auto;
+}
+@media (max-width: 767px) {
+  .app-theme {
+    min-height: 100dvh;
+  }
+  .app-theme header {
+    position: sticky;
+    top: 0;
+    padding: 0.65rem 0.75rem;
+    align-items: center;
+  }
+  .app-theme header > div:first-child {
+    flex: 1 1 auto;
+    gap: 0.45rem;
+  }
+  .app-theme header > div:first-child h1 {
+    font-size: clamp(0.85rem, 3.7vw, 1.05rem);
+    line-height: 1.25;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .app-theme header > div:first-child h1 span {
+    display: inline-block;
+    margin-left: 0.2rem;
+    font-size: 0.6rem;
+  }
+  .app-theme header > div:last-child {
+    flex: 1 1 100%;
+    width: 100%;
+    gap: 0.4rem;
+  }
+  .app-theme header nav {
+    flex: 1 1 auto;
+    width: 0;
+    gap: 0.35rem;
+    padding: 0.1rem 0;
+  }
+  .app-theme header nav button {
+    padding: 0.55rem 0.65rem;
+    min-height: 2.5rem;
+  }
+  .app-theme header nav button span {
+    display: inline !important;
+    font-size: 0.72rem;
+  }
+  .app-theme header nav button svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  .app-theme header > div:last-child > button {
+    flex: 0 0 auto;
+    padding: 0.6rem;
+  }
+  .app-theme main {
+    padding: 0.85rem !important;
+    width: 100%;
+  }
+  .app-theme main .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .app-theme main [class*="grid-cols-"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .app-theme main [class*="w-"] {
+    max-width: 100%;
+  }
+  .app-theme main input,
+  .app-theme main select,
+  .app-theme main textarea {
+    min-width: 0;
+    width: 100%;
+  }
+  .app-theme main button {
+    overflow-wrap: anywhere;
+  }
+  .app-theme .ai-panel {
+    width: calc(100vw - 1.25rem) !important;
+    max-width: calc(100vw - 1.25rem) !important;
+    right: 0.625rem !important;
+    left: auto !important;
+    bottom: 5rem !important;
+  }
+  .app-theme .ai-fab {
+    right: 1rem !important;
+    bottom: 1rem !important;
+  }
+}
+@media (max-width: 380px) {
+  .app-theme header > div:first-child h1 {
+    font-size: 0.8rem;
+  }
+  .app-theme header nav button span {
+    font-size: 0.66rem;
+  }
+  .app-theme main {
+    padding: 0.65rem !important;
+  }
+}
+/* O modo claro também ocupa o viewport inteiro, sem revelar o fundo do navegador. */
+.app-theme.theme-light {
+  background-color: #f5f7fb !important;
+}
+html:has(.app-theme.theme-light),
+body:has(.app-theme.theme-light) {
+  background-color: #f5f7fb;
+}
+
+
+/* Rolagem sem barra fixa: no PC, a barra aparece ao passar o mouse
+   para que também possa ser arrastada; roda e trackpad continuam funcionando. */
+html, body, .app-theme, .app-theme * {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  -ms-overflow-style: auto;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.app-theme *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+.app-theme *::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+.app-theme *::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+}
+@media (hover: hover) and (pointer: fine) {
+  html:hover, body:hover, .app-theme:hover, .app-theme *:hover {
+    scrollbar-color: rgba(148, 163, 184, .75) transparent;
+  }
+  html:hover::-webkit-scrollbar-thumb,
+  body:hover::-webkit-scrollbar-thumb,
+  .app-theme *:hover::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, .75);
+  }
+  html::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover,
+  .app-theme *::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, .95);
+  }
+}

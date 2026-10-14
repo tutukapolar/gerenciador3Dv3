@@ -139,6 +139,7 @@ export default function PlanosTab() {
     NOME_RECEBEDOR,
     CIDADE_RECEBEDOR,
     VALOR_PRO,
+    promocaoPublica,
     SEU_NUMERO_WHATSAPP,
     payloadPix,
     qrCodeUrl,
@@ -169,7 +170,9 @@ export default function PlanosTab() {
                   </div>
 
                   <div className="text-3xl font-black text-indigo-400">
-                    R$ {VALOR_PRO.toFixed(2).replace('.', ',')} <span className="text-xs text-slate-500 font-normal">/ mês</span>
+                    {promocaoPublica && <span className="mr-2 text-base text-slate-500 line-through">R$ {Number(promocaoPublica.normal_price || VALOR_PRO).toFixed(2).replace('.', ',')}</span>}
+                    R$ {Number(VALOR_PRO).toFixed(2).replace('.', ',')} <span className="text-xs text-slate-500 font-normal">/ mês</span>
+                    {promocaoPublica && <div className="mt-1 text-xs font-semibold text-emerald-400">Promoção para novos usuários · {promocaoPublica.duration_months} meses</div>}
                   </div>
 
                   <ul className="space-y-2.5 text-xs text-slate-300">

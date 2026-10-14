@@ -14,7 +14,8 @@ export default function App() {
   const CHAVE_PIX = "192c8e91-54c8-4c1d-a48f-68397556353e";
   const NOME_RECEBEDOR = "Arthur Corrêa Sousa";
   const CIDADE_RECEBEDOR = "Guaratinguetá";
-  const VALOR_PRO = 19.90;
+  const [VALOR_PRO, setVALOR_PRO] = useState(19.90);
+  const [promocaoPublica, setPromocaoPublica] = useState(null);
   const SEU_NUMERO_WHATSAPP = "5512988289882";
 
   const [session, setSession] = useState(null);
@@ -240,10 +241,40 @@ export default function App() {
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(payloadPix)}`;
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+    let active = true;
+    async function carregarPrecosPublicos() {
+      try {
+        const [{ data: settings, error: settingsError }, { data: promo, error: promoError }] = await Promise.all([
+          supabase.rpc('get_public_plan_settings'),
+          supabase.rpc('get_public_active_promotion')
+        ]);
+        if (!settingsError) {
+          const preco = Number(settings?.plans?.pro?.preco);
+          if (active && Number.isFinite(preco) && preco >= 0) setVALOR_PRO(preco);
+        }
+        if (!promoError && promo && promo.active) {
+          if (active) {
+            setPromocaoPublica(promo);
+            const precoPromo = Number(promo.promo_price);
+            if (Number.isFinite(precoPromo) && precoPromo >= 0) setVALOR_PRO(precoPromo);
+          }
+        } else if (active) setPromocaoPublica(null);
+      } catch (e) {
+        console.warn('Não foi possível carregar preços/promocões públicas.', e);
+      }
+    }
+    carregarPrecosPublicos();
+    return () => { active = false; };
+  }, []);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, currentSession) => {
       setSession(currentSession);
       setDadosCarregados(false);
       if (currentSession) {
+        if (event === 'SIGNED_IN') {
+          supabase.rpc('admin_log_event', { p_event_type: 'auth.signed_in', p_details: { source: 'web_app' } }).then(({ error }) => { if (error) console.debug('Registro de login indisponível até aplicar a migração administrativa.'); });
+        }
         carregarDados(currentSession.user.id);
         if (currentSession.user.email === ADMIN_EMAIL) {
           carregarFeedbacksAdmin();
@@ -1118,6 +1149,8 @@ Produzido com tecnologia de Impressão 3D profissional, garantindo resistência 
     NOME_RECEBEDOR,
     CIDADE_RECEBEDOR,
     VALOR_PRO,
+    setVALOR_PRO,
+    promocaoPublica,
     SEU_NUMERO_WHATSAPP,
     payloadPix,
     qrCodeUrl,

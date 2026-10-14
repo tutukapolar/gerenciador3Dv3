@@ -54,6 +54,8 @@ import OnboardingWizard from './OnboardingWizard';
 import Toast from './Toast';
 import AIAssistant from './AIAssistant';
 import ConfiguracoesTab from './tabs/configuracoes';
+import AdminTab from './tabs/admin';
+import PromocoesTab from './tabs/promocoes';
 
 export default function DashboardLayout() {
   const { abaAtiva, setAbaAtiva, userPlan, isAdmin, supabase, configuracoes } = useApp();
@@ -86,7 +88,8 @@ export default function DashboardLayout() {
               { id: 'encomendas', label: 'Encomendas', icon: ListOrdered },
               { id: 'sugestoes', label: isAdmin ? 'Sugestões (Admin)' : 'Sugestões', icon: MessageSquare },
               { id: 'planos', label: 'Planos SaaS', icon: CreditCard },
-              { id: 'configuracoes', label: 'Configurações', icon: Settings }
+              { id: 'configuracoes', label: 'Configurações', icon: Settings },
+              ...(isAdmin ? [{ id: 'admin', label: 'Administração', icon: Shield }, { id: 'promocoes', label: 'Promoções', icon: CreditCard }] : [])
             ].map(tab => {
               const Icon = tab.icon;
               return (
@@ -124,6 +127,8 @@ export default function DashboardLayout() {
         <SugestoesTab />
         <PlanosTab />
         <ConfiguracoesTab />
+        {isAdmin && <AdminTab />}
+        {isAdmin && abaAtiva === 'promocoes' && <PromocoesTab />}
       </main>
 
       <Toast />

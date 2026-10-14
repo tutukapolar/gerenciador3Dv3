@@ -46,7 +46,7 @@ export default function LandingPage() {
   const {
     authMode, setAuthMode, authError, setAuthError, authSuccess, setAuthSuccess,
     email, setEmail, password, setPassword, handleAuth,
-    avaliacoesList, novaAvaliacao, setNovaAvaliacao, enviarAvaliacao
+    avaliacoesList, novaAvaliacao, setNovaAvaliacao, enviarAvaliacao, VALOR_PRO, promocaoPublica
   } = useApp();
 
   return (
@@ -218,7 +218,11 @@ export default function LandingPage() {
               </div>
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-white">Plano PRO (SaaS)</h3>
-                <div className="text-3xl font-black text-indigo-400">R$ 19,90 <span className="text-xs text-slate-500 font-normal">/ mês</span></div>
+                <div className="text-3xl font-black text-indigo-400">
+                  {promocaoPublica && <span className="mr-2 text-base text-slate-500 line-through">R$ {Number(promocaoPublica.normal_price || 19.90).toFixed(2).replace('.', ',')}</span>}
+                  R$ {Number(VALOR_PRO).toFixed(2).replace('.', ',')} <span className="text-xs text-slate-500 font-normal">/ mês</span>
+                  {promocaoPublica && <div className="mt-1 text-xs font-semibold text-emerald-400">Oferta para novos usuários · {promocaoPublica.duration_months} meses</div>}
+                </div>
                 <ul className="space-y-3 text-xs text-slate-300">
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Impressoras e Frota <strong>Ilimitadas</strong></li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Produtos e Estoque <strong>Ilimitados</strong></li>

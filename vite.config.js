@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: "/gerenciador3D/", // Substitua pelo nome exato do seu repositório no GitHub
+  base: "/gerenciador3Dv3/", // Substitua pelo nome exato do seu repositório no GitHub
 })
