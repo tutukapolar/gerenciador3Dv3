@@ -8,6 +8,33 @@ import './theme.css';
 
 const ADMIN_EMAIL = 'ytty8229@gmail.com';
 
+
+function TrialNotice({ supabase, session, onActivated }) {
+  const [trial, setTrial] = React.useState(null);
+  const [busy, setBusy] = React.useState(false);
+  const [message, setMessage] = React.useState('');
+  const token = new URLSearchParams(window.location.search).get('trial');
+  React.useEffect(() => {
+    if (!session?.user?.id) return;
+    let mounted = true;
+    supabase.rpc('my_trial_status').then(({data}) => {
+      if (mounted) setTrial(data || {});
+    });
+    return () => { mounted = false; };
+  }, [session?.user?.id, supabase]);
+  if (!session || (!token && !trial?.pending && !message)) return null;
+  const redeem = async () => {
+    setBusy(true);
+    const {data,error} = await supabase.rpc('redeem_trial', {p_token: token || null});
+    setBusy(false);
+    if (error) { setMessage(error.message); return; }
+    setMessage(`Teste PRO liberado até ${new Date(data.ends_at).toLocaleDateString('pt-BR')}.`);
+    setTrial({...trial,pending:false});
+    if (token) { const url = new URL(window.location.href); url.searchParams.delete('trial'); window.history.replaceState({},'',url); }
+    onActivated?.();
+  };
+  return <div className="fixed inset-0 z-[100] bg-black/70 flex items-center justify-center p-4"><div className="bg-slate-800 border border-indigo-500 rounded-2xl p-6 max-w-md w-full text-white space-y-4"><h2 className="text-xl font-bold">🎁 Você recebeu um teste grátis do PRO!</h2><p className="text-sm text-slate-300">Ative seu teste para acessar os recursos PRO. Ao final, você poderá contratar com uma oferta exclusiva pelo período definido no convite.</p>{message && <p className="text-sm text-amber-200">{message}</p>}<div className="flex gap-3"><button disabled={busy || !!(message && !trial?.pending)} onClick={redeem} className="bg-indigo-600 px-4 py-2 rounded-lg disabled:opacity-50">{busy?'Ativando...':'Ativar teste'}</button><button onClick={()=>{setTrial(null);setMessage('');if(token){const u=new URL(location.href);u.searchParams.delete('trial');history.replaceState({},'',u);window.location.reload();}}} className="bg-slate-700 px-4 py-2 rounded-lg">Fechar</button></div></div></div>;
+}
 export default function App() {
 
   // Informações do PIX
@@ -270,6 +297,7 @@ export default function App() {
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, currentSession) => {
       setSession(currentSession);
+      if (event === 'TOKEN_REFRESHED') return;
       setDadosCarregados(false);
       if (currentSession) {
         if (event === 'SIGNED_IN') {
@@ -1170,6 +1198,7 @@ Produzido com tecnologia de Impressão 3D profissional, garantindo resistência 
   return (
     <AppContext.Provider value={app}>
       {session ? <DashboardLayout /> : <LandingPage />}
+      {session && <TrialNotice supabase={supabase} session={session} onActivated={()=>carregarDados(session.user.id)} />}
     </AppContext.Provider>
   );
 }
